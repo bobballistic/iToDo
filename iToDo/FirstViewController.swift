@@ -8,8 +8,23 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+var myToDoList:[String] = []
 
+
+class FirstViewController: UIViewController, UITableViewDataSource {
+    
+        func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            
+            return myToDoList.count
+        }
+    
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+            var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
+            cell.textLabel?.text = myToDoList[0]
+            return cell
+        }
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
