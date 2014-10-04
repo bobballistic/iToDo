@@ -65,6 +65,9 @@
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="List" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="taskTable" destination="YCU-NL-R15" id="ewc-O3-GI8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>

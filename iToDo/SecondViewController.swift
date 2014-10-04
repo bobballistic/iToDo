@@ -18,10 +18,20 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
         if userInput.text == "" {
                 println("No item entered")
             } else {
-                        myToDoList.append(userInput.text)
-                        userInput.resignFirstResponder()
-                        println("\(myToDoList)")
-                        userInput.text = ""
+
+            myToDoList.append(userInput.text)
+            
+            let fixedToDoList = myToDoList
+            NSUserDefaults.standardUserDefaults().setObject(fixedToDoList, forKey: "userInput")
+            NSUserDefaults.standardUserDefaults().synchronize()
+            
+            var storedToDoItems: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("userInput") // we are accessing the memory with the storedToDoItems var with is a object tipe
+            
+            //userInput.resignFirstResponder()
+            
+            println("\(storedToDoItems)")
+            
+            userInput.text = ""
                     }
     }
     

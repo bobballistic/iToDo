@@ -13,6 +13,8 @@ var myToDoList:[String] = []
 
 class FirstViewController: UIViewController, UITableViewDataSource {
     
+    @IBOutlet var taskTable:UITableView! // outlet for refreshing table data must be linked with ctrl to first view controler otherwise runtime error 
+    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             
@@ -35,6 +37,49 @@ class FirstViewController: UIViewController, UITableViewDataSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(animated: Bool) {   // function to display saved todoitems
+        if var storedToDoItems: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey("userInput") {  //we are checking if the app was used before (if there is anything in the NSUSerdefaults)
+            
+            myToDoList = []     // emptying the myToDo array
+            
+            for var i = 0; i<storedToDoItems?.count; ++i {               // for all items in array add
+                var stringStored = storedToDoItems as Array <String!>    // create new var as string of storedtodoitems
+                myToDoList.append(stringStored[i] as NSString)              // add to array
+                
+            }
+            
+            
+        }
 
+    }
+
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) { // ading ability to delete
+
+        if (editingStyle == UITableViewCellEditingStyle.Delete) {
+            
+            myToDoList.removeAtIndex(indexPath.row)
+            let fixedToDoList = myToDoList                                                          // to do function instead of copy code
+            NSUserDefaults.standardUserDefaults().setObject(fixedToDoList, forKey: "userInput")
+            NSUserDefaults.standardUserDefaults().synchronize()                                     // this append the persistem stoarege in NSUserdefaults
+            taskTable.reloadData() // refresh the table data
+            
+            
+        }
+        
+        
+    }
+
+    
 }
+
+
+
+
+
+
+
+
+
+
 
