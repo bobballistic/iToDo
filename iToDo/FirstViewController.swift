@@ -13,7 +13,8 @@ var myToDoList:[String] = []
 
 class FirstViewController: UIViewController, UITableViewDataSource {
     
-        func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             
             return myToDoList.count
         }
@@ -21,7 +22,7 @@ class FirstViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
             var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "cell")
-            cell.textLabel?.text = myToDoList[0]
+            cell.textLabel?.text = myToDoList[indexPath.row]
             return cell
         }
    
@@ -34,7 +35,6 @@ class FirstViewController: UIViewController, UITableViewDataSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 

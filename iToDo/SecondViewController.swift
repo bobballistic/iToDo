@@ -8,18 +8,21 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UITextFieldDelegate {
     
 
     
     @IBOutlet var userInput: UITextField!
     @IBAction func addItemButton(sender: AnyObject) {
        
-        myToDoList.append(userInput.text)
-        userInput.resignFirstResponder()
-        println("\(myToDoList)")
-        
-        
+        if userInput.text == "" {
+                println("No item entered")
+            } else {
+                        myToDoList.append(userInput.text)
+                        userInput.resignFirstResponder()
+                        println("\(myToDoList)")
+                        userInput.text = ""
+                    }
     }
     
     override func viewDidLoad() {
@@ -30,6 +33,24 @@ class SecondViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
 
-
+    func textFieldShouldReturn(userInput: UITextField) -> Bool {
+        
+        userInput.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        self.view.delete(true)
+        return true
+    }
+    
+    
+    
+    
+    
 }
 
