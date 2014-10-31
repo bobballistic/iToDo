@@ -53,7 +53,7 @@ class FirstViewController: UIViewController, UITableViewDataSource {
         }
 
     }
-    // Below we are adding the delete option to the table:
+    // Below we are adding the swipe to delete option to the table:
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.Delete) {
             
